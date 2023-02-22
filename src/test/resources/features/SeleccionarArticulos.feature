@@ -13,5 +13,6 @@ Feature: Selección de artículos
     Then Válido los productos en el carrito de compras
 
     Examples:
-      | categoria         | subcategoria | equipo |
-      | Tecnología | Computadores | Ver todo |
+      | categoria | subcategoria | equipo   |
+      | Electrodomésticos   | Electro cocina | Ver todo |
+      #| Tecnología   | Audífonos | Ver todo |

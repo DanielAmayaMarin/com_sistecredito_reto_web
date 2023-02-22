@@ -1,15 +1,14 @@
 package com.sistecredito.stepsdefinitions;
 
+import com.sistecredito.exceptions.ModulosException;
 import com.sistecredito.models.MenuModel;
-import com.sistecredito.questions.ValidarProductosCantidad;
-import com.sistecredito.questions.ValidarTotalProductos;
+import com.sistecredito.questions.ValidarProductos;
 import com.sistecredito.tasks.AbrirPagina;
 import com.sistecredito.tasks.CerrarPopup;
 import com.sistecredito.tasks.SeleccionarProducto;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -32,7 +31,9 @@ public class SeleccionarArticulosStepdefinition {
     }
     @Then("Válido los productos en el carrito de compras")
     public void válidoLosProductosEnElCarritoDeCompras() {
-
+        theActorInTheSpotlight().should(seeThat(
+                ValidarProductos.enElCarrito()
+        ).orComplainWith(ModulosException.class, ModulosException.ERROR));
     }
 
 }

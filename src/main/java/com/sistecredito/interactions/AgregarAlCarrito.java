@@ -1,6 +1,5 @@
 package com.sistecredito.interactions;
 
-import com.sistecredito.utils.ArrayProductos;
 import com.sistecredito.utils.GenerarNumero;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
@@ -31,19 +30,19 @@ public class AgregarAlCarrito implements Interaction {
             WebElement elemento = ELEMENTOS.resolveFor(actor);
             List<WebElement> productElements = elemento.findElements(By.xpath(LBL_TITULO()));
             int producto = GenerarNumero.getRandomNumber(productElements.size());
+            int cantidadSeleccionar = GenerarNumero.cantidadProductos();
             WebElement randomProduct = productElements.get(producto);
             actor.attemptsTo(
                     ScrollElement.to(LBL_NOMBRE_PRODUCTO(randomProduct.getText())),
                     WaitUntil.the(LBL_NOMBRE_PRODUCTO(randomProduct.getText()), WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
                     Click.on(LBL_NOMBRE_PRODUCTO(randomProduct.getText()))
             );
-
             if (Text.of(VALIDAR_BOTON).answeredBy(actor).equals("AGREGAR A LA BOLSA")){
                 actor.attemptsTo(
-                        GuardarDatos.go(cantidad),
+                        GuardarDatos.go(cantidadSeleccionar),
                         WaitUntil.the(BTN_AGREGAR_ALA_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
                         Click.on(BTN_AGREGAR_ALA_BOLSA),
-                        SeleccionarCantidad.seleccionar(GenerarNumero.cantidadProductos())
+                        SeleccionarCantidad.seleccionar(cantidadSeleccionar)
                 );
             }else {
                 cantidad ++;

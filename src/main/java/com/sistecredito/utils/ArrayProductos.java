@@ -33,11 +33,20 @@ public class ArrayProductos {
         return productoModelsList.size();
     }
 
-    public static Integer getSumatoria(){
+    public static String getSumatoria(){
         int total = 0;
         for (int i = 0; i < productoModelsList.size(); i++) {
             total = total + getArrayProductos().get(i).getCantidad();
         }
-        return total;
+        return String.valueOf(total);
+    }
+
+    public static String getSubTotal(){
+        Double total = 0.0;
+        for (int i = 0; i < productoModelsList.size(); i++) {
+            total = total +(Double.parseDouble(getArrayProductos().get(i).getPrecio()) * getArrayProductos().get(i).getCantidad());
+            System.out.println(total);
+        }
+        return String.valueOf(Math.round(total*100.0)/100.0);
     }
 }

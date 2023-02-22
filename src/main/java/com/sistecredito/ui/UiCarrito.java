@@ -13,6 +13,8 @@ public class UiCarrito {
         return Target.the("Titulo").locatedBy("(//input[@id='quantityInput'])["+cantidad+"]");
     }
 
+    public static final Target CANTIDADTOTAL = Target.the("Label cantidad").locatedBy("//span[@class='count-number count notranslate']");
 
+    public static final Target CANTIDADTOTAL2 = Target.the("Label cantidad ").locatedBy("//span[@data-testid='total-products-count']");
 
 }

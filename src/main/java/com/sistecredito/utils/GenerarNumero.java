@@ -8,6 +8,7 @@ public class GenerarNumero {
 
     private static Random random = new Random();
     private static HashSet<Integer> usedNumbers = new HashSet<>();
+    private static HashSet<Integer> usedNumbersCantidad = new HashSet<>();
 
     public static int getRandomNumber(int maximo) {
         int number = random.nextInt(maximo - 1);
@@ -19,7 +20,12 @@ public class GenerarNumero {
     }
 
     public static Integer cantidadProductos(){
-        return random.nextInt(5);
+        int number = random.nextInt(5 - 1);
+        while (usedNumbersCantidad.contains(number) && number == 0) {
+            number = random.nextInt(5 - 1);
+        }
+        usedNumbersCantidad.add(number);
+        return number;
     }
 }
 

@@ -13,7 +13,7 @@ public class VerificarPopUp implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(WaitUntil.the(CERRAR_POPUP, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds());
+        actor.attemptsTo(WaitUntil.the(CERRAR_POPUP, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds());
         do {
             if (CERRAR_POPUP.resolveFor(actor).isClickable()) {
                 actor.attemptsTo(

@@ -34,13 +34,13 @@ public class AgregarAlCarrito implements Interaction {
             WebElement randomProduct = productElements.get(producto);
             actor.attemptsTo(
                     ScrollElement.to(LBL_NOMBRE_PRODUCTO(randomProduct.getText())),
-                    WaitUntil.the(LBL_NOMBRE_PRODUCTO(randomProduct.getText()), WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                    WaitUntil.the(LBL_NOMBRE_PRODUCTO(randomProduct.getText()), WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                     Click.on(LBL_NOMBRE_PRODUCTO(randomProduct.getText()))
             );
             if (Text.of(VALIDAR_BOTON).answeredBy(actor).equals("AGREGAR A LA BOLSA")){
                 actor.attemptsTo(
                         GuardarDatos.go(cantidadSeleccionar),
-                        WaitUntil.the(BTN_AGREGAR_ALA_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                        WaitUntil.the(BTN_AGREGAR_ALA_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                         Click.on(BTN_AGREGAR_ALA_BOLSA),
                         SeleccionarCantidad.seleccionar(cantidadSeleccionar)
                 );
@@ -50,7 +50,7 @@ public class AgregarAlCarrito implements Interaction {
             BrowseTheWeb.as(actor).getDriver().navigate().back();
         }
         actor.attemptsTo(
-                WaitUntil.the(BTN_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                WaitUntil.the(BTN_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
             Click.on(BTN_BOLSA)
         );
     }

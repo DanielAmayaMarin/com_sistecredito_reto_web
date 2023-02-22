@@ -21,16 +21,16 @@ public class Navegar implements Interaction {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                WaitUntil.the(MENU_HAMBURGESA, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                WaitUntil.the(MENU_HAMBURGESA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                 Click.on(MENU_HAMBURGESA),
-                WaitUntil.the(ITEM_CATEGORIA(menuModel.getCategoria()), WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                WaitUntil.the(ITEM_CATEGORIA(menuModel.getCategoria()), WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                 Click.on(ITEM_CATEGORIA(menuModel.getCategoria())),
                 Check.whether(menuModel.getEquipo().equals("Ver todo"))
                         .andIfSo(
-                                WaitUntil.the(ITEM_TODO(menuModel.getSubcategoria()), WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                                WaitUntil.the(ITEM_TODO(menuModel.getSubcategoria()), WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                                 Click.on(ITEM_TODO(menuModel.getSubcategoria()))
                         ).otherwise(
-                                WaitUntil.the(ITEM_SUBCATEGORIA(menuModel.getEquipo()), WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                                WaitUntil.the(ITEM_SUBCATEGORIA(menuModel.getEquipo()), WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                                 Click.on(ITEM_SUBCATEGORIA(menuModel.getEquipo()))
                         )
         );

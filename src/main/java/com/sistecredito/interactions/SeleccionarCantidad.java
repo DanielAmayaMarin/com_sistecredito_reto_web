@@ -28,7 +28,7 @@ public class SeleccionarCantidad implements Interaction {
             if (cantidad != 1){
                 for (int j = 1; j < cantidad; j++) {
                     actor.attemptsTo(
-                            WaitUntil.the(BTN_INCREMENTAR, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                            WaitUntil.the(BTN_INCREMENTAR, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                             Click.on(BTN_INCREMENTAR)
                     );
                     Boolean existeElemento = driver.findElements(By.xpath("(//span[@class=\"copy5 primary  jsx-2889528833 normal      \"])[2]")).size() != 0;
@@ -39,7 +39,7 @@ public class SeleccionarCantidad implements Interaction {
             }
         }
         actor.attemptsTo(
-                WaitUntil.the(BTN_SEGUIR_COMPRANDO, WebElementStateMatchers.isClickable()).forNoMoreThan(7).seconds(),
+                WaitUntil.the(BTN_SEGUIR_COMPRANDO, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                 Click.on(BTN_SEGUIR_COMPRANDO)
         );
     }

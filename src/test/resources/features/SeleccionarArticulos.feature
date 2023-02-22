@@ -14,5 +14,5 @@ Feature: Selección de artículos
 
     Examples:
       | categoria | subcategoria | equipo   |
-      | Electrodomésticos   | Electro cocina | Ver todo |
-      #| Tecnología   | Audífonos | Ver todo |
+      #| Electrodomésticos   | Electro cocina | Ver todo |
+      | Tecnología   | Audífonos | Ver todo |

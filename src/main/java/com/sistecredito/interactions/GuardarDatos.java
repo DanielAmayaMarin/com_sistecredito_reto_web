@@ -4,10 +4,7 @@ import com.sistecredito.utils.ArrayProductos;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
-import net.serenitybdd.screenplay.questions.Text;
-
 import static com.sistecredito.ui.UiProducto.*;
-
 
 public class GuardarDatos implements Interaction {
 
@@ -18,9 +15,9 @@ public class GuardarDatos implements Interaction {
     }
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String titulo = Text.of(H_TITULO).answeredBy(actor);
-        String precio = Text.of(SPAN_PRECIOUNO).answeredBy(actor) == "" ? Text.of(SPAN_PRECIODOS).answeredBy(actor) : Text.of(SPAN_PRECIOUNO).answeredBy(actor);
         int cantidadProductos = 0;
+        String titulo = H_TITULO.resolveFor(actor).getText();
+        String precio = SPAN_PRECIO.resolveFor(actor).getText().replace("$", "").replace("(Precio final)", "").trim();
         if (cantidad == 0){
             cantidadProductos = 1;
         }else {

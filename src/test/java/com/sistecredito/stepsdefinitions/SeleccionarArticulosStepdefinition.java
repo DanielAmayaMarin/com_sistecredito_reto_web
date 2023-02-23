@@ -3,6 +3,7 @@ package com.sistecredito.stepsdefinitions;
 import com.sistecredito.exceptions.ModulosException;
 import com.sistecredito.models.MenuModel;
 import com.sistecredito.questions.ValidarProductos;
+import com.sistecredito.questions.ValidarSubtotal;
 import com.sistecredito.tasks.AbrirPagina;
 import com.sistecredito.tasks.CerrarPopup;
 import com.sistecredito.tasks.SeleccionarProducto;
@@ -29,11 +30,18 @@ public class SeleccionarArticulosStepdefinition {
                 SeleccionarProducto.seleccionar(MenuModel.setData(dataTable).get(0), cantidad)
         );
     }
-    @Then("Válido los productos en el carrito de compras")
-    public void válidoLosProductosEnElCarritoDeCompras() {
+
+    @Then("Válido la cantidad de productos en el carrito de compras")
+    public void válidoLaCantidadDeProductosEnElCarritoDeCompras() {
         theActorInTheSpotlight().should(seeThat(
                 ValidarProductos.enElCarrito()
         ).orComplainWith(ModulosException.class, ModulosException.ERROR));
+    }
+    @Then("Válido el subtotal de los productos")
+    public void válidoElSubtotalDeLosProductos() {
+        theActorInTheSpotlight().should(seeThat(
+                ValidarSubtotal.enElCarrito()
+        ).orComplainWith(ModulosException.class, ModulosException.ERROR_SUB_TOTAL));
     }
 
 }

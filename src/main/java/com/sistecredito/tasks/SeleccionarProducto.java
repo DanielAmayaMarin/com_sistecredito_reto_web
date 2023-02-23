@@ -20,7 +20,7 @@ public class SeleccionarProducto implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        try {
+       try {
             actor.attemptsTo(
                     Navegar.menu(menuModel),
                     AgregarAlCarrito.seleccionar(cantidad)

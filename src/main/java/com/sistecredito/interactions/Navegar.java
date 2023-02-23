@@ -8,16 +8,16 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-
 import static com.sistecredito.ui.UiPaginaFalabella.*;
 
 public class Navegar implements Interaction {
 
     private MenuModel menuModel;
 
-    public Navegar(MenuModel menuModel){
+    public Navegar(MenuModel menuModel) {
         this.menuModel = menuModel;
     }
+
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
@@ -36,7 +36,7 @@ public class Navegar implements Interaction {
         );
     }
 
-    public static Navegar menu(MenuModel menuModel){
-            return Instrumented.instanceOf(Navegar.class).withProperties(menuModel);
+    public static Navegar menu(MenuModel menuModel) {
+        return Instrumented.instanceOf(Navegar.class).withProperties(menuModel);
     }
 }

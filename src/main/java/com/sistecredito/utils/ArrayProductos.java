@@ -8,19 +8,12 @@ public class ArrayProductos {
 
     private static ArrayList<ProductoModel> productoModelsList = new ArrayList<>();
 
-    public static String eliminarPesos(String precio){
-        String charsToRemove = "$ (Preciofinal)";
-        for (char c : charsToRemove.toCharArray()) {
-            precio = precio.replace(String.valueOf(c), "");
-        }
-        return precio;
-    }
 
     public static void setArrayProductos(String nombre, int cantidad, String precio){
         ProductoModel productoModel = new ProductoModel();
         productoModel.setNombre(nombre);
         productoModel.setCantidad(cantidad);
-        productoModel.setPrecio(eliminarPesos(precio));
+        productoModel.setPrecio(precio);
         productoModelsList.add(productoModel);
     }
 
@@ -49,4 +42,5 @@ public class ArrayProductos {
         }
         return String.valueOf(Math.round(total*100.0)/100.0);
     }
+
 }

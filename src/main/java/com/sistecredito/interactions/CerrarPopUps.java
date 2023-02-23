@@ -5,7 +5,6 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import org.openqa.selenium.*;
-
 import static com.sistecredito.ui.UiPopUps.*;
 
 public class CerrarPopUps implements Interaction {

@@ -1,12 +1,9 @@
 package com.sistecredito.interactions;
 
-
-
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 public class ScrollElement implements Interaction {
     private String xpath;
 
-    public ScrollElement (String xpath) {
+    public ScrollElement(String xpath) {
         this.xpath = xpath;
     }
 
@@ -26,7 +23,7 @@ public class ScrollElement implements Interaction {
         actions.perform();
     }
 
-    public static ScrollElement to(String xpath){
+    public static ScrollElement to(String xpath) {
         return Instrumented.instanceOf(ScrollElement.class).withProperties(xpath);
     }
 }

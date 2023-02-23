@@ -1,9 +1,5 @@
 package com.sistecredito.ui;
 
-
-import net.serenitybdd.screenplay.targets.Target;
-import org.openqa.selenium.By;
-
 public class UiPopUps {
     public static String CONTENEDOR_PADRE(){
         return ".airship-html-prompt-shadow";

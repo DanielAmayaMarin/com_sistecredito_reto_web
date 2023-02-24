@@ -1,5 +1,7 @@
 package com.sistecredito.interactions;
 
+import com.sistecredito.exceptions.ModulosException;
+import com.sistecredito.utils.Constantes.Constantes;
 import com.sistecredito.utils.GenerarNumero;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
@@ -26,37 +28,42 @@ public class AgregarAlCarrito implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(
-                VerificarPopUp.cerrar()
-        );
-        for (int i = 0; i < cantidad; i++) {
-            WebElement elemento = ELEMENTOS.resolveFor(actor);
-            List<WebElement> productElements = elemento.findElements(By.xpath(LBL_TITULO()));
-            int producto = GenerarNumero.getRandomNumber(productElements.size());
-            int cantidadSeleccionar = GenerarNumero.cantidadProductos();
-            WebElement randomProduct = productElements.get(producto);
+        try {
             actor.attemptsTo(
-                    ScrollElement.to(LBL_NOMBRE_PRODUCTO(randomProduct.getText())),
-                    WaitUntil.the(LBL_NOMBRE_PRODUCTO(randomProduct.getText()), WebElementStateMatchers.isVisible()).forNoMoreThan(30).seconds(),
-                    Click.on(LBL_NOMBRE_PRODUCTO(randomProduct.getText()))
+                    VerificarPopUp.cerrar()
             );
-
-            if (Text.of(VALIDAR_BOTON).answeredBy(actor).equals("AGREGAR A LA BOLSA")) {
+            for (int i = 0; i < cantidad; i++) {
+                WebElement elemento = ELEMENTOS.resolveFor(actor);
+                List<WebElement> productElements = elemento.findElements(By.xpath(LBL_TITULO()));
+                int producto = GenerarNumero.getRandomNumber(productElements.size());
+                int cantidadSeleccionar = GenerarNumero.cantidadProductos();
+                WebElement randomProduct = productElements.get(producto);
                 actor.attemptsTo(
-                        GuardarDatos.go(cantidadSeleccionar),
-                        WaitUntil.the(BTN_AGREGAR_ALA_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
-                        Click.on(BTN_AGREGAR_ALA_BOLSA),
-                        SeleccionarCantidad.seleccionar(cantidadSeleccionar)
+                        ScrollElement.to(LBL_NOMBRE_PRODUCTO(randomProduct.getText())),
+                        WaitUntil.the(LBL_NOMBRE_PRODUCTO(randomProduct.getText()), WebElementStateMatchers.isVisible()).forNoMoreThan(30).seconds(),
+                        Click.on(LBL_NOMBRE_PRODUCTO(randomProduct.getText()))
                 );
-            } else {
-                cantidad++;
+
+                if (Text.of(VALIDAR_BOTON).answeredBy(actor).equals("AGREGAR A LA BOLSA")) {
+                    actor.attemptsTo(
+                            GuardarDatos.go(cantidadSeleccionar),
+                            WaitUntil.the(BTN_AGREGAR_ALA_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
+                            Click.on(BTN_AGREGAR_ALA_BOLSA),
+                            SeleccionarCantidad.seleccionar(cantidadSeleccionar)
+                    );
+                } else {
+                    cantidad++;
+                }
+                BrowseTheWeb.as(actor).getDriver().navigate().back();
             }
-            BrowseTheWeb.as(actor).getDriver().navigate().back();
+            actor.attemptsTo(
+                    WaitUntil.the(BTN_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
+                    Click.on(BTN_BOLSA)
+            );
+        }catch (RuntimeException ex){
+            throw new ModulosException(ModulosException.Error(Constantes.INTERACTION_AGREGARALCARRITO), ex);
         }
-        actor.attemptsTo(
-                WaitUntil.the(BTN_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
-                Click.on(BTN_BOLSA)
-        );
+
     }
 
     public static AgregarAlCarrito seleccionar(int cantidad) {

@@ -1,6 +1,5 @@
 package com.sistecredito.tasks;
 
-import com.sistecredito.exceptions.ModulosException;
 import com.sistecredito.interactions.AgregarAlCarrito;
 import com.sistecredito.interactions.Navegar;
 import com.sistecredito.models.MenuModel;
@@ -20,15 +19,10 @@ public class SeleccionarProducto implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-       try {
             actor.attemptsTo(
                     Navegar.menu(menuModel),
                     AgregarAlCarrito.seleccionar(cantidad)
             );
-        }catch (RuntimeException ex){
-            throw new ModulosException(ModulosException.ERROR_AL_INTENTAR_SELECCIONAR_LOS_PRODUCTOS, ex);
-        }
-
     }
 
     public static SeleccionarProducto seleccionar(MenuModel menuModel, int cantidad) {

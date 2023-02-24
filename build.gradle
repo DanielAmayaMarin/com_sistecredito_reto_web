@@ -21,23 +21,6 @@ buildscript {
         classpath("net.serenity-bdd:serenity-gradle-plugin:2.3.10")
     }
 }
-/*
-ext {
-    serenityVersion = '2.1.5'
-    serenityCucumberVersion = '1.9.50'
-}
-
-dependencies {
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.assertj:assertj-core:3.12.2'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.29'
-    implementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
-}
-*/
 
 ext {
     serenityVersion = '3.1.16'

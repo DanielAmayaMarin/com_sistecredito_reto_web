@@ -7,7 +7,7 @@ Feature: Selección de artículos
   @AgregaProduto
   Scenario Outline: Agregar al carrito
     Given que me encuentro en la página de falabella
-    When selecciono los 1 productos aleatorios
+    When selecciono los 3 productos aleatorios
       | categoria   | subcategoria   | equipo   |
       | <categoria> | <subcategoria> | <equipo> |
     Then Válido la cantidad de productos en el carrito de compras

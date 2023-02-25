@@ -15,6 +15,10 @@ Para ejecutar el proyecto completo utilizar el comando:
 ```
  gradle test   
 ```  
+Actualmente la automatización cuenta con los siguientes tags:
+
+Tag Global: ```  @AgregaProduto  ```
+
 Para ejecutar un runner específico :
 
 ```  gradle clean test -Dtest.single=MiRunner  ```   

@@ -15,4 +15,4 @@ Feature: Selección de artículos
 
     Examples:
       | categoria  | subcategoria | equipo   |
-      | Celulares  | Telefonía    | Vivo     |
+      | Celulares  | Telefonía    | Huawei     |

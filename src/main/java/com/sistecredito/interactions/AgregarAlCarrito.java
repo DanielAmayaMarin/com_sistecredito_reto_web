@@ -15,8 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 import static com.sistecredito.ui.UiPaginaFalabella.*;
-import static com.sistecredito.ui.UiProducto.BTN_AGREGAR_ALA_BOLSA;
-import static com.sistecredito.ui.UiProducto.VALIDAR_BOTON;
+import static com.sistecredito.ui.UiProducto.*;
 
 public class AgregarAlCarrito implements Interaction {
 
@@ -44,19 +43,26 @@ public class AgregarAlCarrito implements Interaction {
                         Click.on(LBL_NOMBRE_PRODUCTO(randomProduct.getText()))
                 );
 
-                if (Text.of(VALIDAR_BOTON).answeredBy(actor).equals("AGREGAR A LA BOLSA")) {
+                if (Text.of(VALIDAR_BOTON).answeredBy(actor).equals(Constantes.TEXTO_BOTON)) {
                     actor.attemptsTo(
-                            GuardarDatos.go(cantidadSeleccionar),
                             WaitUntil.the(BTN_AGREGAR_ALA_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
-                            Click.on(BTN_AGREGAR_ALA_BOLSA),
-                            SeleccionarCantidad.seleccionar(cantidadSeleccionar)
+                            Click.on(BTN_AGREGAR_ALA_BOLSA)
                     );
+                    if (BTN_INCREMENTAR.resolveFor(actor).isVisible()){
+                        actor.attemptsTo(
+                                SeleccionarCantidad.seleccionar(cantidadSeleccionar),
+                                GuardarDatos.go(cantidadSeleccionar)
+                        );
+                    }else {
+                        cantidad++;
+                    }
                 } else {
                     cantidad++;
                 }
                 BrowseTheWeb.as(actor).getDriver().navigate().back();
             }
             actor.attemptsTo(
+
                     WaitUntil.the(BTN_BOLSA, WebElementStateMatchers.isClickable()).forNoMoreThan(30).seconds(),
                     Click.on(BTN_BOLSA)
             );

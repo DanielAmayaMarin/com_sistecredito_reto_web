@@ -6,4 +6,5 @@ public class Constantes {
     public static final String INTERACTION_NAVEGAR = "Clase interaction Navegar";
     public static final String INTERACTION_SELECCIONARCANTIDAD = "Clase interaction Seleccionar cantidad";
     public static final String INTERACTION_VERIFICARPOPUP = "Clase interaction Verificar PopUp";
+    public static final String TEXTO_BOTON = "AGREGAR A LA BOLSA";
 }

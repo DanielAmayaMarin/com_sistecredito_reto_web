@@ -12,6 +12,15 @@ public class UiCarrito {
     public static final String LABEL_TITULO (int id){
         return "(//span[@data-testid='name'])["+id+"]";
     }
+
+    public static final String LABEL_TITULO_DOS (int id){
+        return "(//h4[@class='fb-product__title']//child::a)["+id+"]";
+    }
+
+    public static final Target LABEL_TITULO_DOS_TARGET (int id){
+        return Target.the("Laberl Titulo").locatedBy("(//h4[@class='fb-product__title']//child::a)["+id+"]");
+    }
+
     public static final Target LABEL_TITULO_TARGET (int id){
         return Target.the("Laberl Titulo").locatedBy("(//span[@data-testid='name'])['"+id+"']");
     }

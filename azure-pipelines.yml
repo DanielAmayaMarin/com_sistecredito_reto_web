@@ -1,6 +1,6 @@
 schedules:
-- cron: "*/5 * * * *"
-  displayName: Every 5 minutes
+- cron: "0 9 * * 1,4"
+  displayName: Twice a week at 9:00 AM
   branches:
     include:
     - main
@@ -14,11 +14,6 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host "Dummy task to force pipeline execution"
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Agrega aquí tu script de PowerShell
 - task: Gradle@2
   inputs:
     workingDirectory: ''
